@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 from twitter import *
-import json
 import psycopg2
 
 conn = psycopg2.connect(database = "aws", user = "milanmenezes", password = "nightfury", host = "milan-aws.crbk9i7trzoq.ap-south-1.rds.amazonaws.com", port = "5432")
