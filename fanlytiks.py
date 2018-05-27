@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, send_from_directory
 import requests
 import psycopg2
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 
@@ -31,9 +34,7 @@ def index():
 	cur = conn.cursor()
 	cur.execute("select distinct ttime, twtext from datastore order by ttime desc limit 10;")
 	latest=cur.fetchall()
-	# return str(latest)
-	# print cur
-	latest=[(unicode(a[0]),unicode(a[1], "utf8").encode("utf-8")) for a in latest]
+	# latest=[(unicode(a[0]),unicode(a[1], "utf8").encode("utf-8")) for a in latest]
 	cur.close()
 
 	#tweets with most retweets
