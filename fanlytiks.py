@@ -8,11 +8,12 @@ sys.setdefaultencoding('utf8')
 app = Flask(__name__)
 
 
-@app.route('/sitemap.xml')
-def static_from_root():
-    return send_from_directory(app.static_folder, request.path[1:])
+# @app.route('/sitemap.xml')
+# def static_from_root():
+#     return send_from_directory(app.static_folder, request.path[1:])
 
 @app.route('/')
+@app.route('/fanlytiks')
 def index():
 	conn = psycopg2.connect(database = "aws", user = "milanmenezes", password = "nightfury", host = "milan-aws.crbk9i7trzoq.ap-south-1.rds.amazonaws.com", port = "5432")
 	#general info
@@ -34,7 +35,6 @@ def index():
 	cur = conn.cursor()
 	cur.execute("select distinct ttime, twtext from datastore order by ttime desc limit 10;")
 	latest=cur.fetchall()
-	# latest=[(unicode(a[0]),unicode(a[1], "utf8").encode("utf-8")) for a in latest]
 	cur.close()
 
 	#tweets with most retweets
