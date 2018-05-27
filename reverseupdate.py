@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from twitter import *
 import json
 import psycopg2
