@@ -149,6 +149,14 @@
     data: {
         x: 'x',
         columns: {{ tpd | safe}}
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%Y-%m-%d'
+            }
+        }
     }
   });
 

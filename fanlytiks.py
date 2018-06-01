@@ -51,14 +51,14 @@ def index():
 
 	#tweets per day
 	cur = conn.cursor()
-	cur.execute("select to_char(ttime,'DD') as day, count(to_char(ttime,'DD')) as tweets from datastore group by day;")
+	cur.execute("select to_char(ttime,'YYYY-MM-DD') as day, count(to_char(ttime,'DD-MM-YY')) as tweets from datastore group by day order by day;")
 	tpd=cur.fetchall()
 	cur.close()
 
 	x=['x']
 	y=['tweets']
 	for i in tpd:
-		x.append(eval(i[0]))
+		x.append(i[0])
 		y.append(int(i[1]))
 	tpd=[x,y]
 	# return str(data)
@@ -67,4 +67,4 @@ def index():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',debug=True)
+	app.run(host='0.0.0.0')
